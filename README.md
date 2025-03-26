@@ -1,6 +1,8 @@
-"# Scrabble Practice App" 
+## Scrabble Practice App 
 
 Welcome to practicing Scrabble with an AI! This is a minigame where you try to play the highest scoring word on a randomly generated scrabble board. Your score will be compared with the AI. 
+![scrabble](https://github.com/user-attachments/assets/03293d7a-1e0a-44e2-9a42-2fbdb9ddd03a)
+
 Contained here are some of the instructions for using this repository.
 
 ## Requirements
