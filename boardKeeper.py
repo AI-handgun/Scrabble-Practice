@@ -71,14 +71,15 @@ class boardKeeper():
                 right = row*15 + column+1
                 
                 # attachments are added
-                if (row != 0) and (board[down] in '-23@#') and (down not in attachments):
+                if (row != 0) and ((board[down] in '-23@#') or down in temporaryBoardLocations) and (down not in attachments):
                     attachments.add(down)
-                if (row != 14) and (board[up] in '-23@#') and (up not in attachments):
+                if (row != 14) and ((board[up] in '-23@#')  or up in temporaryBoardLocations) and (up not in attachments):
                     attachments.add(up)
-                if (column != 0) and (board[left] in '-23@#') and (left not in attachments):
+                if (column != 0) and ((board[left] in '-23@#')  or left in temporaryBoardLocations) and (left not in attachments):
                     attachments.add(left)
-                if (column != 14) and (board[right] in '-23@#') and (right not in attachments):
+                if (column != 14) and ((board[right] in '-23@#') or right in temporaryBoardLocations) and (right not in attachments):
                     attachments.add(right)
+                
 
         if len(attachments) == 0:
             attachments.add(112)

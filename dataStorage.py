@@ -83,20 +83,14 @@ class dataStorage():
 
     def computerChangeBoard(self, board, letters, spaces):
         self.data.board = board
-      
-
+        
         for (letter, space) in zip(letters, spaces):
             self.data.computerBoardLocations.append(space)
             self.data.occupiedBoardLocations.append(space)
             self.data.occupiedBoardLetters.append(letter)
             #
-            try:
-                self.data.temporaryBoardLocations.remove(space)
-                self.data.temporaryBoardLetters.remove(letter)
+           
                 #self.data.emptyBoardLocations.remove(space)
-            except:
-                print("Did not play in human spot")
-                self.data.emptyBoardLocations.remove(space)
                 
            
             
@@ -353,7 +347,9 @@ class dataStorage():
             row = spot//15
             column = spot%15
             letter = data.board[spot]
-            if spot in data.emptyBoardLocations:
+            if spot in data.computerBoardLocations:
+                self.drawBoardSquare(canvas, row, column, letter, data.backgroundFill)
+            elif spot in data.emptyBoardLocations:
                 if spot in data.tripleWord:
                     self.drawBoardSquare(canvas, row, column, letter, data.tripleWordFill)
                 elif spot in data.doubleWord:
@@ -366,8 +362,7 @@ class dataStorage():
                     self.drawBoardSquare(canvas, row, column, letter, data.emptySquareFill)
             elif spot in data.temporaryBoardLocations:
                 self.drawBoardSquare(canvas, row, column, letter, data.handSquareFill)
-            elif spot in data.computerBoardLocations:
-                self.drawBoardSquare(canvas, row, column, letter, data.backgroundFill)
+            
             else:
                 # for occupied squares
                 self.drawBoardSquare(canvas, row, column, letter, data.occupiedSquareFill)
@@ -405,7 +400,7 @@ class dataStorage():
         canvas.create_text(675, 415, text="Pass", font="Arial 10")
         canvas.create_text(725, 415, text="Play", font="Arial 10")
         canvas.create_text(775, 415, text="Next", font="Arial 10")
-        canvas.create_text(825, 415, text="Search", font="Arial 10")
+        canvas.create_text(825, 415, text="Recall", font="Arial 10")
 
         # draw the score
         canvas.create_rectangle(data.dataCenter-140, 250, data.dataCenter+140, 290, fill="#66FF66")

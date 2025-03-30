@@ -85,10 +85,11 @@ def run(width=1000, height=600):
 
             if x.data.searchOn:
                 x.data.searchOn = False
-                e = Entry()
-                e.pack()
-                e.delete(0, END)
-                e.insert(0, "a default value")
+#                e = Entry()
+#                e.pack()
+#                e.delete(0, END)
+#                e.insert(0, "a default value")
+                x.returnTemporaryLetters()
 
             elif x.data.switchTurn:
                 x.data.switchTurn = False
