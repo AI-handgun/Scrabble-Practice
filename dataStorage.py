@@ -12,7 +12,8 @@ class dataStorage():
         self.data.doubleWordFill = "orange"
         self.data.doubleLetterFill = "yellow"
         self.data.tripleLetterFill = "green"
-        self.data.occupiedSquareFill = "magenta"
+        self.data.occupiedSquareFill = "#F5F5DC"
+        
         self.data.handSquareFill = "#66DDDD"
         self.data.squareSize = 32
 
@@ -22,7 +23,8 @@ class dataStorage():
         #for i in range(225):
          #   self.data.emptyBoardLocations.append(i)  # fills this with every location
 #            self.data.board += '-'      # would normally be taken from boardMaker
-        #self.data.occupiedBoardLocations = []
+        self.data.occupiedBoardLocations = []
+        self.data.computerBoardLocations=[]
         self.data.occupiedBoardLetters = []
         self.data.temporaryBoardLocations = []
         self.data.temporaryBoardLetters = []
@@ -82,9 +84,20 @@ class dataStorage():
     def computerChangeBoard(self, board, letters, spaces):
         self.data.board = board
         for (letter, space) in zip(letters, spaces):
-            self.data.emptyBoardLocations.remove(space)
+            self.data.computerBoardLocations.append(space)
             self.data.occupiedBoardLocations.append(space)
             self.data.occupiedBoardLetters.append(letter)
+            #
+            try:
+                self.data.temporaryBoardLocations.remove(space)
+                self.data.temporaryBoardLetters.remove(letter)
+                self.data.emptyBoardLocations.remove(space)
+            except:
+                print("Did not play in human spot")
+                self.data.emptyBoardLocations.remove(space)
+                
+           
+            
 
     def returnTemporaryLetters(self):
         for letter in self.data.temporaryBoardLetters:
@@ -351,6 +364,8 @@ class dataStorage():
                     self.drawBoardSquare(canvas, row, column, letter, data.emptySquareFill)
             elif spot in data.temporaryBoardLocations:
                 self.drawBoardSquare(canvas, row, column, letter, data.handSquareFill)
+            elif spot in data.computerBoardLocations:
+                self.drawBoardSquare(canvas, row, column, letter, data.backgroundFill)
             else:
                 # for occupied squares
                 self.drawBoardSquare(canvas, row, column, letter, data.occupiedSquareFill)
@@ -396,7 +411,7 @@ class dataStorage():
         # draw the text
         canvas.create_text(265, 50, text="Scrabble Board", font="Arial 20")
         canvas.create_text(data.dataCenter, 60, text="Instructions", font="Arial 15")
-        canvas.create_text(data.dataCenter, 100, text="Pressing 'p' pauses/unpauses timer")
+        #canvas.create_text(data.dataCenter, 100, text="Pressing 'p' pauses/unpauses timer")
         canvas.create_text(data.dataCenter, 120, text="Red = 3x word, orange = 2x word, green = 3x letter, yellow = 2x letter")
 
         canvas.create_text(data.dataCenter, 160, text=("Messages: "), font="Arial 15")

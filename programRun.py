@@ -23,6 +23,7 @@ dictionary = set(document.split('\n'))
 doc.close()
 
 def run(width=1000, height=600):
+    
     def redrawAllWrapper(canvas, data):
         canvas.delete(ALL)
         canvas.create_rectangle(0, 0, data.width, data.height, fill='white', width=0)
@@ -47,8 +48,8 @@ def run(width=1000, height=600):
             x.data.message3 = ''
             redrawAllWrapper(canvas, data)
 
-            occupied = set(boardKeeper.refreshOccupied())
-            attachments = set(boardKeeper.refreshAttachments())
+            occupied = set(boardKeeper.refreshOccupied(x.data.temporaryBoardLocations))
+            attachments = set(boardKeeper.refreshAttachments(x.data.temporaryBoardLocations))
 
             computerCheck.changeLetterHand(humanPlayer.letterHand) # This changes the letters in hand
             computerCheck.getLetterCombos() #This gets all word combos
@@ -78,8 +79,8 @@ def run(width=1000, height=600):
             # case of human turn
             
 
-            occupied = set(boardKeeper.refreshOccupied())
-            attachments = set(boardKeeper.refreshAttachments())
+            occupied = set(boardKeeper.refreshOccupied(x.data.temporaryBoardLocations))
+            attachments = set(boardKeeper.refreshAttachments(x.data.temporaryBoardLocations))
             
             x.mousePressed(event)
 
@@ -192,7 +193,7 @@ def run(width=1000, height=600):
     data.endOfGame = False
     data.board=boardKeeper.board
     
-    data.occupiedBoardLocations=boardKeeper.refreshOccupied()
+    data.occupiedBoardLocations=boardKeeper.refreshOccupied([])
     data.emptyBoardLocations=[]
     for i in range(225):
         if i not in data.occupiedBoardLocations:

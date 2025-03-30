@@ -46,22 +46,22 @@ class boardKeeper():
                 print(board[15*row + column], end = ' ')
             print('')
 
-    def refreshOccupied(self):
+    def refreshOccupied(self, temporaryBoardLocations):
         ''' Get locations occupied by a letter '''
         board = self.board
         occupied = []
         for spot in range(len(board)):
-            if board[spot] not in '-23@#':
+            if board[spot] not in '-23@#' and spot not in temporaryBoardLocations:
                 occupied.append(spot)
         return occupied
 
-    def refreshAttachments(self):
+    def refreshAttachments(self, temporaryBoardLocations):
         ''' Finds every place where a word could start (called attachments) given a board '''
         board = self.board
         attachments = set([])
 
         for i in range(len(board)):
-            if board[i] not in '-23@#':
+            if board[i] not in '-23@#' and i not in temporaryBoardLocations:
                 row = i//15
                 column = i%15
                 # space directions
