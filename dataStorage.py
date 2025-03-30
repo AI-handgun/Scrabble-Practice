@@ -83,6 +83,8 @@ class dataStorage():
 
     def computerChangeBoard(self, board, letters, spaces):
         self.data.board = board
+      
+
         for (letter, space) in zip(letters, spaces):
             self.data.computerBoardLocations.append(space)
             self.data.occupiedBoardLocations.append(space)
@@ -91,7 +93,7 @@ class dataStorage():
             try:
                 self.data.temporaryBoardLocations.remove(space)
                 self.data.temporaryBoardLetters.remove(letter)
-                self.data.emptyBoardLocations.remove(space)
+                #self.data.emptyBoardLocations.remove(space)
             except:
                 print("Did not play in human spot")
                 self.data.emptyBoardLocations.remove(space)

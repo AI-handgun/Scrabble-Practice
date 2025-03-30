@@ -14,7 +14,6 @@ from tkinter import *
 
 humanCheck = HC.humanChecker()
 computerCheck = CWC.computerWordChecker()
-letterBag = LB.letterBag()
 
 # make the dictionary
 doc = open('scrabbleDictionary.txt', 'r')
@@ -184,6 +183,7 @@ def run(width=1000, height=600):
     
     # Initialize data
     class Struct(object): pass
+    letterBag = LB.letterBag()
     boardKeeper = BK.boardKeeper()
     humanPlayer = player.player()
     computerPlayer = player.player()
